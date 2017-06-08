@@ -1,10 +1,8 @@
-package ets.mediaplayer;
+package ets.mediaplayerserver;
 
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
-import android.media.MediaPlayer;
 
-import java.io.FileDescriptor;
 import java.util.List;
 
 /**

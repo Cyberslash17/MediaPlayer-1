@@ -1,4 +1,4 @@
-package ets.mediaplayer;
+package ets.mediaplayerserver;
 
 import org.junit.Test;
 

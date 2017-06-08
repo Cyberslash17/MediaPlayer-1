@@ -1,4 +1,4 @@
-package ets.mediaplayer;
+package ets.mediaplayerserver;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
