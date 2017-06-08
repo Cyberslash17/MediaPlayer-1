@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 import fi.iki.elonen.NanoHTTPD;
 
@@ -19,8 +20,6 @@ public class MediaPlayerActivity extends AppCompatActivity {
 
     MediaPlayer player;
     Boolean shuffling = false;
-
-    private Handler seekBarHandler = new Handler();
 
     public void play(View view) {
         Button button = (Button) view;
@@ -68,16 +67,22 @@ public class MediaPlayerActivity extends AppCompatActivity {
         Log.d("Test", String.format("Shuffling: %b",shuffling ));
     }
 
+
+    public static String listRaw()
+    {
+        Field[] fields = R.raw.class.getFields();
+
+        for (int i = 0; i < fields.length - 1; i++) {
+            String name = fields[i].getName();
+            Log.d("Test", String.format("Shuffling: %b",name));
+        }
+        return "bob";
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_player);
-
-        for (String s:this.getResources().getAssets().getLocales()) {
-
-            Log.d("Test", s);
-        }
-
 
         player = MediaPlayer.create(this ,R.raw.shrekanthem);
 
@@ -133,10 +138,57 @@ public class MediaPlayerActivity extends AppCompatActivity {
             super(hostname, port);
         }
 
+        public String parseURI(String uri)
+        {
+            return "string";
+        }
+
+        public String getValue(String uri)
+        {
+            return "0";
+        }
+
         @Override
         public Response serve(IHTTPSession session) {
             if (session.getMethod() == Method.GET)
             {
+                String uri = session.getUri();
+                String command = parseURI(uri);
+
+                if(command.equals("playlist"))
+                {
+
+                }else if(command.equals("id"))
+                {
+                    String value = getValue(uri);
+
+                }else if(command.equals("play"))
+                {
+
+                }else if(command.equals("pause"))
+                {
+
+                }else if(command.equals("stop"))
+                {
+
+                }else if(command.equals("next"))
+                {
+
+                }else if(command.equals("back"))
+                {
+
+                }else if(command.equals("repeat"))
+                {
+
+                }else if(command.equals("shuffle"))
+                {
+
+                }else if(command.equals("volume"))
+                {
+                    String value = getValue(uri);
+                }
+
+
                 return new Response("<http><head><title>404</title></head><body><h1>Error 404</h1></body></http>");
             }
             return super.serve(session);
