@@ -69,11 +69,12 @@ public class MediaPlayerActivity extends AppCompatActivity {
             @Override
             public String getPlaylist() {
                 String json = "{\n" +
-                        "\"songs\": [\n";
+                        "\t\"songs\": [\n";
                 for (Integer i : playlist.playlist) {
                     json += getSongDetails(i);
                 }
-                json += "]\n" +
+
+                json = json.substring(0,json.length() -1) + "]\n" +
                         "} \n";
                 return json;
             }
@@ -238,15 +239,15 @@ public class MediaPlayerActivity extends AppCompatActivity {
         String artistName = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST);
         String albumName = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
         String length = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-        return "{\n" +
+        return "\t{\n" +
                 "\t\t\"ID\": \"" + id + "\",\n" +
                 "\t\t\"title\": \"" + songName + "\",\n" +
                 "\t\t\"length\": \"" + length + "\",\n" +
                 "\t\t\"artist\": \"" + artistName + "\",\n" +
                 "\t\t\"album\": \"" + albumName + "\",\n" +
-                "\t\t\"image\": \"null\"\n" +
+                "\t\t\"image\": \"null\",\n" +
                 "\t\t\"path\":\"" + getPath(id) + "\"\n" +
-                "\t}";
+                "\t},";
     }
 
     private String getMimeDetail(int id) {

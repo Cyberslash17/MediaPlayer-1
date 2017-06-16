@@ -40,11 +40,6 @@ public class Playlist {
             }
         }
 
-        //SI CA CRASH, REMPLACE LA BOUCLE FOR PAR LE VIEUX CODE CI-DESSOUS
-//        musicList.add(R.raw.shrekanthem);
-//        musicList.add(R.raw.rockabye);
-//        musicList.add(R.raw.shapeofyou);
-
         playlist = musicList;
     }
 
